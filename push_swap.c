@@ -30,7 +30,8 @@ Colocar os números int dentro de uma pilha(lista encadeada)
 */
 #include "LIBFT/libft.h"
 #include <stdio.h>
-
+char	*ft_strchry(const char *s, int c);
+/*Acrescentar o argv[i] a uma nova string para usar seus indices*/
 char *append_str(char **argv)
 {
 	int		i;
@@ -42,6 +43,12 @@ char *append_str(char **argv)
 	temp = ft_strdup("");
 	while (argv[i] != NULL)
 	{
+		if (str2)
+		{
+			// ver strchry no makefile
+			if (ft_strchry(str2, *argv[i]))
+			return ("erro");
+		}
 		str2 = ft_strjoin(argv[i], " ");
 		old = temp;
 		temp = ft_strjoin(old, str2);
@@ -67,10 +74,16 @@ void free_matrix(char **str)
 int	main(int argc, char **argv)
 {
 
+	//append = acrescentar
 	if (argc < 2)
+	{
+		//apagar
+		printf("passe os inteiros");
+		//
 		return(1);
+	}
 	char *number_list = append_str(argv);
-	free(number_list);
+	//free(number_list); posso apagar!
 	char **numbers = ft_split(number_list, ' ');
 	for (int i = 0; numbers[i] != NULL; i++)
 		printf("%s\n", numbers[i]);
