@@ -6,8 +6,7 @@ FLAGS = -Wall -Wextra -Werror -g
 LIBFT_DIR = LIBFT
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
-SRCS = push_swap.c \
-		ft_strchry.c
+SRCS = push_swap.c
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)

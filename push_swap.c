@@ -30,7 +30,6 @@ Colocar os números int dentro de uma pilha(lista encadeada)
 */
 #include "LIBFT/libft.h"
 #include <stdio.h>
-char	*ft_strchry(const char *s, int c);
 /*Acrescentar o argv[i] a uma nova string para usar seus indices*/
 char *append_str(char **argv)
 {
@@ -43,12 +42,8 @@ char *append_str(char **argv)
 	temp = ft_strdup("");
 	while (argv[i] != NULL)
 	{
-		if (str2)
-		{
-			// ver strchry no makefile
-			if (ft_strchry(str2, *argv[i]))
+		if (ft_strchr(temp, *argv[i]) || !ft_isdigit(*argv[i]))
 			return ("erro");
-		}
 		str2 = ft_strjoin(argv[i], " ");
 		old = temp;
 		temp = ft_strjoin(old, str2);
@@ -78,7 +73,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 	{
 		//apagar
-		printf("passe os inteiros");
+		printf("passe os inteiros\n");
 		//
 		return(1);
 	}
