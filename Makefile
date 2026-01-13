@@ -3,7 +3,7 @@ NAME = push_swap
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g
 
-LIBFT_DIR = LIBFT
+LIBFT_DIR = libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
 SRCS =	push_swap.c \

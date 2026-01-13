@@ -6,7 +6,7 @@
 /*   By: daniviei <daniviei@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 14:17:57 by daniviei          #+#    #+#             */
-/*   Updated: 2025/12/23 18:39:21 by daniviei         ###   ########.fr       */
+/*   Updated: 2026/01/13 12:22:55 by daniviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,45 +28,16 @@
  [] alguns argumentos não serem inteiros
  [] alguns argumentos exceder os limites dos números inteiros e/ou a presença de duplicados
 */
-#include "LIBFT/libft.h"
+#include "libft/libft.h"
 #include <stdio.h>
-int	ft_Atoi(const char *nptr)
-{
-	int	i;
-	int	flag;
-	int	result;
-
-	i = 0;
-	flag = 0;
-	result = 0;
-	while ((nptr[i] >= 7 && nptr[i] <= 13) || nptr[i] == 32)
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i] == '+')
-			flag = 1;
-		else
-			flag = -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = result * 10 + (nptr[i] - 48);
-		i++;
-	}
-	if (flag == -1)
-		return (result * flag);
-	return (result);
-}
-
 static int	verify(char *arg)
 {
 	int	i;
 	int	argx;
 
 	i = 0;
-	argx = ft_Atoi(arg);
-	if (printf("%d teste\n", argx) < -2147483647 || argx > 2147483647)
+	argx = ft_atol(arg);
+	if (argx < -2147483647 || argx > 2147483647)
 		return (1);
 	while (arg[i])
 	{
@@ -82,16 +53,21 @@ static int	verify(char *arg)
 static char *append_str(char **argv)
 {
 	int		i;
+	int		j;
 	char	*temp;
 	char	*str2;
 	char	*old;
 
 	i = 1;
+	j = 1;
 	temp = ft_strdup("");
 	while (argv[i] != NULL)
 	{
+		while (argv[j++] != NULL)
+				if (strcmp(argv[i], argv[j]) == 0)
+					return ("Error\n");
 		if (verify(argv[i]))
-			return ("Error");
+			return ("Error\n");
 		//vericar se o valor entre os " " é igual a entrada do argv
 		str2 = ft_strjoin(argv[i], " ");
 		old = temp;
