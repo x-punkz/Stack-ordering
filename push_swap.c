@@ -6,27 +6,27 @@
 /*   By: daniviei <daniviei@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 14:17:57 by daniviei          #+#    #+#             */
-/*   Updated: 2026/01/13 19:25:35 by daniviei         ###   ########.fr       */
+/*   Updated: 2026/01/13 12:22:55 by daniviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 # Passo a Passo
 **1- Verificar dados de entrada**
-[x] Verificar duplicadas
+[ ] Verificar duplicadas
 [x] Verificar se foram passados números dentro do range do INT_MIN >= && <= INT_MAX 
 [x] Verificar se todos os inputs são de fatos números
 [] Argv[1] sera o topo da lista:
 
 *ATENÇÃO*: Se for encontrado caracteres inválidos ou duplicadas retornar error adequadamente.
 
-[x] Transformar os dados de entrada de tipo char* para int
+[] Transformar os dados de entrada de tipo char* para int
 
 [] Colocar os números int dentro de uma pilha(lista encadeada)
 
 * Os erros incluem, por exemplo:
- [x] alguns argumentos não serem inteiros
- [x] alguns argumentos exceder os limites dos números inteiros e/ou a presença de duplicados
+ [] alguns argumentos não serem inteiros
+ [] alguns argumentos exceder os limites dos números inteiros e/ou a presença de duplicados
 */
 #include "libft/libft.h"
 #include <stdio.h>
@@ -64,7 +64,7 @@ static char *append_str(char **argv)
 	{
 		if (verify(argv[i]))
 		{
-			ft_putendl_fd("Error", 2);
+			ft_putendl_fd("Error", 2);i = 1;
 			return (NULL);
 		}
 		str2 = ft_strjoin(argv[i], " ");
@@ -119,16 +119,17 @@ int	main(int argc, char **argv)
 		//
 		return(1);
 	}
-	i = 1;
 	char *number_list = append_str(argv);
 	if (!number_list)
-		return (1);
-	while (argv[i] != NULL)
+	return (1);
+	char **numbers = ft_split(number_list, ' ');
+	i = 0;
+	while (numbers[i] != NULL)
 	{
 		j = i + 1;
-		while (argv[j] != NULL)
+		while (numbers[j] != NULL)
 		{
-			if (ft_strcmp(argv[i], argv[j]) == 0)
+			if (ft_strcmp(numbers[i], numbers[j]) == 0)
 			{
 				ft_putendl_fd ("Error", 2);
 				return (1);
@@ -137,7 +138,6 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
-	char **numbers = ft_split(number_list, ' ');
 	//while (numbers[i] != NULL)
 	//	join(str, numbers[i]);
 	// ! isso é p imprimir os numeros !
