@@ -100,7 +100,7 @@ void	rotrev_ab(t_list *a, t_list *b)
 	ft_putstr_fd("rrr\n", 1);
 }
 
-void   push_a(t_list *a, t_list *b)
+/*void   push_a(t_list *a, t_list *b)
 {
     if (b == NULL)
         return ;
@@ -109,4 +109,4 @@ void   push_a(t_list *a, t_list *b)
     tmp = a->content;
     a->content = b->content;
     ft_putstr_fd("pa\n", 1);
-}
+}*/

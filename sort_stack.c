@@ -30,15 +30,18 @@ int	ft_lstlen(t_list *lst)
 void	sort_stack(t_list *stack_a, t_list *stack_b)
 {
 	t_list	*a;
-// 0 2 1 e 2 0 1 quebra
+// 2 1 0 quebra
 	a = stack_a;
 	(void)stack_b;
 	if (!stack_a)
 		return ;
-	if (*(int *)a->content > *(int *)a->next->content)
-		swap_a(a);
+	if ((*(int *)a->content > *(int *)a->next->content) &&
+		(*(int *)a->content > *(int *)a->prev->content))
+		rot_a(a);
 	if (*(int *)a->next->content > *(int *)a->prev->content)
 		rotrev_a(a);
 	else if (*(int *)a->content > *(int *)a->prev->content)
 		rot_a(a);
+	if (*(int *)a->content > *(int *)a->next->content)
+		swap_a(a);
 }
