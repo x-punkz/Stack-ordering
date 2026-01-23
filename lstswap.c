@@ -44,12 +44,35 @@ void	swap_ss(t_list *a, t_list *b)
 
 void	rot_a(t_list *a)
 {
-	t_list	*tmp;
+	t_list	*first;
+	t_list	*last;
+
+	if (!a || !(a)->next)
+		return ;
+	first = ft_lstnew(a->content);
+	*a = *a->next;
+		// 4. Encontra o último elemento da lista
+	last = a;
+	while (last->next)
+	{
+		last = last->next;
+		if (last->next == a)
+			break ;
+	}
+	
+	// 5. Move o primeiro elemento para o final
+	last->next = first;
+	first->prev = last;
+	a->prev = first;
+	first->next = NULL;
+	
+
+	/*t_list	*tmp;
 
 	tmp = a->content;
 	a->content = a->next->content;
 	a->next->content = a->prev->content;
-	a->prev->content = tmp;
+	a->prev->content = tmp;*/
 	ft_putstr_fd("ra\n", 1);
 }
 
@@ -102,38 +125,59 @@ void	rotrev_ab(t_list *a, t_list *b)
 /*pega o topo de b e joga pro topo de a*/
 void   push_a(t_list *a, t_list *b)
 {
-    if (b == NULL)
+    t_list	*tmp;
+	t_list	*last;
+
+	if (b == NULL)
         return ;
-    t_list *tmp;
-
-    // Pega o primeiro elem de b
-	tmp = b;
-    b = (b)->next;
-
-	//coloca no topo de a
+    // mudando a cabeça de b
+	tmp = ft_lstnew(b->content);
+    if (b->next)
+		*b = *b->next;
+	last = b;
+	while (last->next)
+	{
+		last = last->next;
+		if (last->next == b)
+			break ;
+	}
+	//Atualiza o prev do novo top_B
+	if (b)
+		b->prev = last;
+	//coloca no topo de b
 	tmp->next = a;
+	if (a)
+		a->prev = tmp;
 	a = tmp;
+	tmp->prev = ft_lstlast(a);
     ft_putstr_fd("pa\n", 1);
 }
 
 /*Pega o top de a e joga p topo de b*/
-void   push_b(t_list *a, t_list *b)
+void   push_b(t_list **a, t_list **b)
 {
     t_list	*tmp;
+	t_list	*last;
 
 	if (a == NULL)
         return ;
-    // Pega o primeiro elem de b
-	tmp = a;
-    a = (a)->next;
+    // mudando a cabeca de a
+	tmp = ft_lstnew(a);
+	*a = (*a)->next;
+	last = *a;
+	while (last->next)
+	{
+		last = last->next;
+		if (last->next == *a)
+			break ;
+	}
 	//Atualiza o prev do novo top_A
 	if (a)
-		a->prev = NULL;
-	//coloca no topo de a
-	tmp->next = b;
-	if (b)
-		b->prev = tmp;
-	b = tmp;
-	tmp->prev = NULL;
+		(*a)->prev = last;
+	//coloca no topo de b
+	//if (b)
+	//	(*b)->prev = tmp;
+	ft_lstadd_front(b, tmp);
+	(*b)->prev = ft_lstlast((*b)->content);
     ft_putstr_fd("pb\n", 1);
 }

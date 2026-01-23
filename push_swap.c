@@ -81,7 +81,7 @@ static char *append_str(char **argv)
 	return (temp);
 }
 // adicionar elementos na pilha
-static void	join(t_list **holder, char *buf)
+void	join(t_list **holder, char *buf)
 {
 	t_list  *new_node;
 	t_list  *last_node;
@@ -116,7 +116,7 @@ static void	join(t_list **holder, char *buf)
 
 	last_node = ft_lstlast(holder);
 	holder->prev = last_node;
-	last_node->next = holder;
+	//last_node->next = holder;
 }
 
 void free_matrix(char **str)

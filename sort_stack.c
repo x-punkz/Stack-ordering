@@ -51,7 +51,7 @@ void	sort_four(t_list *stack_a, t_list *stack_b)
 {
 	while(*(int *)stack_a->content != min_node(stack_a))
 		rot_a(stack_a);
-	push_b(stack_a, stack_b);
+	push_b(&stack_a, &stack_b);
 	sort_three(stack_a);
 	push_a(stack_a, stack_b);
 }

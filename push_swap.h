@@ -36,5 +36,5 @@ int		min_node(t_list *stack);
 int		max_node(t_list *stack);
 //void	sort_five(t_list *stack_a, t_list *stack_b);
 void   push_a(t_list *a, t_list *b);
-void   push_b(t_list *a, t_list *b);
+void   push_b(t_list **a, t_list **b);
 #endif
