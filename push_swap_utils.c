@@ -30,7 +30,7 @@ ps_list	*ps_lstlast(ps_list *lst)
 	return (lst);
 }
 
-ps_list	*ps_lstnew(void *content)
+ps_list	*ps_lstnew(int content)
 {
 	ps_list	*node;
 

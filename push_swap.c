@@ -10,30 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-# Passo a Passo
-**1- Verificar dados de entrada**
-[x] Verificar duplicadas
-[x] Verificar se foram passados números dentro do range do INT_MIN >= && <= INT_MAX 
-[x] Verificar se todos os inputs são de fatos números
-[x] Argv[1] sera o topo da lista:
-
-*ATENÇÃO*: Se for encontrado caracteres inválidos ou duplicadas retornar error adequadamente.
-
-[x] Transformar os dados de entrada de tipo char* para int
-
-[x] Colocar os números int dentro de uma pilha(lista encadeada)"coloquei na lista mas como char ainda"
-
-[ ] Ordenar caso sega so dois ou tres argumentos
-[ ] Ordenar os valores na pilha 'a' usando a pilha 'b'
-
-
-* Os erros incluem, por exemplo:
- [x] alguns argumentos não serem inteiros
- [x] alguns argumentos exceder os limites dos números inteiros e/ou a presença de duplicados
-*/
 #include "push_swap.h"
 #include <stdio.h>
+
+void	print_stack(ps_list *stack)
+{
+	//apvoid	print_stack(ps_list *stack);//apagar esta funçaoagar est funçao!!!
+	ps_list *aux = stack;
+
+	while (aux)
+	{
+		int	listValue = aux->content;
+// posso passar sem armazenar em var pro printf tbm.
+		printf("index: %d nó %d\n", aux->index, listValue);
+		aux = aux->next;
+		if (aux == stack)
+			break ;
+	}
+}
+
 static int	verify(char *arg)
 {
 	int		i;
@@ -86,19 +81,13 @@ void	join(ps_list **holder, char *buf)
 {
 	ps_list  *new_node;
 	ps_list  *last_node;
-	int		*value;
+	int		value;
 	
 	last_node = ps_lstlast(*holder);
 	new_node = malloc(sizeof(ps_list));
 	if (new_node == NULL)
 		return ;
-	value = malloc(sizeof (int));
-	if (value == NULL)
-	{
-		free(value);
-		return ;
-	}
-	*value = ft_atoi(buf);
+	value = ft_atoi(buf);
 	if (*holder == NULL)
 	{
 		*holder = new_node;
@@ -180,17 +169,10 @@ int	main(int argc, char **argv)
 	}
 	update_index(a);
 	double_list(a);
-	sort_stack(a, b);
+	if (ps_lstlen(a) > 1)
+		sort_stack(&a, &b);
 	//aux p n perder a referencia da cabeca da lista
-	ps_list *aux = a;
-	
-	while (aux) {
-		int	listValue = *(int *)aux->content;
-	// posso passar sem armazenar em var pro printf tbm.
-		printf("index: %d nó %d\n", aux->index, listValue);
-		aux = aux->next;
-		if (aux == a)
-			break ;
-	}
+	print_stack(a);
+
 	free_matrix(numbers);
 }

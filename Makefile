@@ -6,7 +6,9 @@ FLAGS = -Wall -Wextra -Werror -g
 LIBFT_DIR = libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
-SRCS =	lstswap.c \
+SRCS =	swap_and_push.c \
+	rots_a_b.c \
+	rotrevs_a_b.c \
 	sort_stack.c \
 	push_swap.c \
 	push_swap_utils.c \
