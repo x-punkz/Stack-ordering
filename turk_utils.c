@@ -20,7 +20,7 @@ void	move_b(ps_list **stack_a, ps_list **stack_b, int size)
 	i = 0;
 	while (i < size / 2)
 	{
-		if ((*stack_a)->index_final < size / 2)
+		if ((*stack_a)->index_final < size / 2)//coloquei o =
 		{
 			push_b(stack_a, stack_b);
 			i++;
@@ -58,7 +58,7 @@ void	update_index(ps_list *stack_a, ps_list *stack_b)
 	}
 }
 
-void	target(ps_list **stack_a, ps_list **stack_b)
+void	target(ps_list *stack_a, ps_list *stack_b)
 {
 	int			i;
 	ps_list		*aux_a;
@@ -67,14 +67,12 @@ void	target(ps_list **stack_a, ps_list **stack_b)
 	ps_list	*target;
 	
 	i = 0;
-	aux_a = *stack_a;
-	aux_b = *stack_b;
-	update_index(*stack_a, *stack_b);
-	target = min_node(aux_a);
-	maybe_target = INT_MAX;
+	aux_b = stack_b;
 	while (aux_b)
 	{
-		aux_a = *stack_a;
+		maybe_target = INT_MAX;
+		target = NULL;
+		aux_a = stack_a;
 		while (aux_a)
 		{
 			if (aux_a->content > aux_b->content
@@ -85,6 +83,8 @@ void	target(ps_list **stack_a, ps_list **stack_b)
 			}
 			aux_a = aux_a->next;
 		}
+		if (!target)
+			target = min_node(stack_a);
 		aux_b->target = target;
 		aux_b = aux_b->next;
 	}
@@ -118,20 +118,16 @@ int	total_cost_calculate(ps_list *stack_b)
 	int	cost_b;
 
 	aux_b = stack_b;
-	cost_a = stack_b->cost_a;
-	cost_b = stack_b->cost_b;
-	while (aux_b)
+	cost_a = aux_b->cost_a;
+	cost_b = aux_b->cost_b;
+	if ((cost_a >= 0 && cost_b >= 0) || (cost_a <= 0 && cost_b <= 0))
 	{
-		if ((cost_a >= 0 && cost_b <= 0) || (cost_a <= 0 && cost_b >= 0))
-			aux_b->total_cost = abs(cost_a) + abs(cost_b);
-		if (abs(cost_a) > 0 && abs(cost_b) > 0)
-		{
-			if (abs(cost_a) >= abs(cost_b))
-				aux_b->total_cost = cost_a;
-			else
-				aux_b->total_cost = cost_b;
-		}
-		aux_b = aux_b->next;
+		if (mod(cost_a) >= mod(cost_b))
+			aux_b->total_cost = mod(cost_a);
+		else
+			aux_b->total_cost = mod(cost_b);
 	}
-	return (stack_b->total_cost);
+	else
+		aux_b->total_cost = mod(cost_a) + mod(cost_b);
+	return (aux_b->total_cost);
 }

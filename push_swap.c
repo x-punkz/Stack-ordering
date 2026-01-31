@@ -171,6 +171,5 @@ int	main(int argc, char **argv)
 	double_list(a);
 	if (ps_lstlen(a) > 1 && !is_sorted(a))
 			sort_stack(&a, &b);
-
 	free_matrix(numbers);
 }

@@ -35,32 +35,25 @@ void	rot_a(ps_list **a, int print)
 void	rot_b(ps_list **b, int print)
 {
 	ps_list	*first;
-	ps_list	*last;
+	//ps_list	*last;
+	ps_list	*tmp;
 
 	if (!*b || !(*b)->next)
 		return ;
-	first = ps_lstnew((*b)->content);
+	first = *b;
+	tmp = *b;
 	*b = (*b)->next;
-	last = *b;
-	while (last->next)
-		last = last->next;
-	last->next = first;
-	first->prev = last;
-	(*b)->prev = first;
-	first->next = NULL;
-	// ps_list	*tmp;
-
-	// tmp = b->content;
-	// b->content = b->next->content;
-	// b->next->content = b->prev->content;
-	// b->prev->content = tmp;
+	while (first->next != NULL)
+		first = first->next;
+	tmp->next = NULL;
+	first->next = tmp;
 	if (print)
 		ft_putstr_fd("rb\n", 1);
 }
 
-void	rot_ab(ps_list *a, ps_list *b)
+void	rot_ab(ps_list **a, ps_list **b)
 {
-	rot_a(&a, 0);
-	rot_b(&b, 0);
+	rot_a(a, 0);
+	rot_b(b, 0);
 	ft_putstr_fd("rr\n", 1);
 }

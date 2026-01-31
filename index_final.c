@@ -21,3 +21,10 @@ void	index_final (ps_list *stack)
 		tmp = tmp->next;
 	}
 }
+
+int		mod(int n)
+{
+	if (n < 0)
+		n *= -1;
+	return (n);
+}

@@ -14,16 +14,21 @@
 
 void	rotrev_a(ps_list **a, int print)
 {
-	ps_list *last;
-    ps_list *before_last;
-    
-    if (!*a || !(*a)->next)
+	ps_list *temp;
+    ps_list *last;
+    ps_list *second_last;
+
+    if (a == NULL || *a == NULL)
         return ;
-    before_last = *a;
-    while (before_last->next->next)
-        before_last = before_last->next;
-    last = before_last->next;
-    before_last->next = NULL;
+
+    temp = *a;
+    while (temp->next != NULL)
+    {
+        second_last = temp;
+        temp = temp->next;
+    }
+    last = temp;
+    second_last->next = NULL;
     last->next = *a;
     *a = last;
     if (print)
@@ -32,16 +37,21 @@ void	rotrev_a(ps_list **a, int print)
 
 void	rotrev_b(ps_list **b, int print)
 {
-	ps_list *last;
-    ps_list *before_last;
-    
-    if (!*b || !(*b)->next)
-        return;
-    before_last = *b;
-    while (before_last->next->next)
-        before_last = before_last->next;
-    last = before_last->next;
-    before_last->next = NULL;
+	ps_list *temp;
+    ps_list *last;
+    ps_list *second_last;
+
+    if (b == NULL || *b == NULL)
+        return ;
+
+    temp = *b;
+    while (temp->next != NULL)
+    {
+        second_last = temp;
+        temp = temp->next;
+    }
+    last = temp;
+    second_last->next = NULL;
     last->next = *b;
     *b = last;
     if (print)
@@ -50,28 +60,7 @@ void	rotrev_b(ps_list **b, int print)
 
 void	rotrev_ab(ps_list **a, ps_list **b)
 {
-	ps_list *last_a;
-	ps_list *last_b;
-    ps_list *before_last_a;
-    ps_list *before_last_b;
-    
-    if (!*a || !(*a)->next)
-        return;
-    before_last_a = *a;
-    while (before_last_a->next->next)
-        before_last_a = before_last_a->next;
-    last_a = before_last_a->next;
-    before_last_a->next = NULL;
-    last_a->next = *a;
-    *a = last_a;
-	if (!*b || !(*b)->next)
-        return;
-    before_last_b = *b;
-    while (before_last_b->next->next)
-        before_last_b = before_last_b->next;
-    last_b = before_last_b->next;
-    before_last_b->next = NULL;
-    last_b->next = *b;
-    *b = last_b;
+	rotrev_a (a, 0);
+    rotrev_b (b, 0);
 	ft_putstr_fd("rrr\n", 1);
 }

@@ -39,7 +39,7 @@ void    swap_b(ps_list *b);
 void    swap_ss(ps_list *a, ps_list *b);
 void    rot_a(ps_list **a, int print);
 void    rot_b(ps_list **b, int i);
-void    rot_ab(ps_list *a, ps_list *b);
+void    rot_ab(ps_list **a, ps_list **b);
 void    rotrev_a(ps_list **a, int print);
 void    rotrev_b(ps_list **b, int print);
 void    rotrev_ab(ps_list **a, ps_list **b);
@@ -52,7 +52,7 @@ void   push_a(ps_list **a, ps_list **b);
 void   push_b(ps_list **a, ps_list **b);
 void	move_b(ps_list **stack_a, ps_list **stack_b, int size);/**/
 void	update_index(ps_list *stack_a, ps_list *stack_b);
-void	target(ps_list **stack_a, ps_list **stack_b);
+void	target(ps_list *stack_a, ps_list *stack_b);
 void	cost_calculate(ps_list *stack, ps_list *stack_b);
 int	total_cost_calculate(ps_list *stack_b);
 // ps_list		*cheap_cost(ps_list *stack_b, int *cost_a, int *cost_b);
@@ -62,4 +62,5 @@ void	choose_movs(ps_list **stack_a, ps_list **stack_b);
 ps_list	*ps_lstlast(ps_list *lst);
 ps_list	*ps_lstnew(int content);
 void	ps_lstadd_front(ps_list **lst, ps_list *new);
+int		mod(int n);
 #endif

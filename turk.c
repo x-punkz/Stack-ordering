@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void	double_rotate(ps_list *stack_a, ps_list *stack_b, ps_list *cheap)
+void	double_rotate(ps_list **stack_a, ps_list **stack_b, ps_list *cheap)
 {
 	while (cheap->cost_a > 0 && cheap->cost_b > 0)
     {
@@ -23,7 +23,7 @@ void	double_rotate(ps_list *stack_a, ps_list *stack_b, ps_list *cheap)
 	}
 	while (cheap->cost_a < 0 && cheap->cost_b < 0)
 	{
-		rotrev_ab(&stack_a, &stack_b);
+		rotrev_ab(stack_a, stack_b);
 		(cheap->cost_a)++;
 		(cheap->cost_b)++;
 	}
@@ -61,7 +61,6 @@ ps_list		*cheap_cost(ps_list *stack_b)
 
 	tmp = stack_b;
 	cheapest = stack_b;
-	cheapest->total_cost = INT_MAX;
 	while (tmp)
 	{
 		total_cost = total_cost_calculate(tmp);
@@ -73,19 +72,6 @@ ps_list		*cheap_cost(ps_list *stack_b)
 		tmp = tmp->next;
 	}
 	return (cheapest);
-	// ps_list		*min_cheap;
-	// ps_list		*aux;
-	
-	// aux = stack_b;
-	// min_cheap = aux;
-	// while(aux)
-	// {
-	// 	total_cost_calculate(stack_b);
-	// 	if (min_cheap->total_cost > aux->total_cost)
-	// 		min_cheap = aux;
-	// 	aux = aux->next;
-	// }
-	//return (min_cheap);
 }
 
 int	is_sorted(ps_list *stack)
@@ -126,7 +112,7 @@ void	choose_movs(ps_list **stack_a, ps_list **stack_b)
 	cheapest = cheap_cost(*stack_b);
 	//while (aux_b)
 	//{
-		double_rotate(*stack_a, *stack_b, cheapest);
+		double_rotate(stack_a, stack_b, cheapest);
 		single_rotate(stack_a, stack_b, cheapest);
 		push_a(stack_a, stack_b);
 		// if (cheapest->index < ps_lstlen(stack_b)/ 2)
@@ -152,7 +138,7 @@ void	turk(ps_list **stack_a, ps_list **stack_b)
 	while (*stack_b)
 	{
 		update_index(*stack_a, *stack_b);
-		target(stack_a, stack_b);
+		target(*stack_a, *stack_b);
 		target_index(*stack_b, *stack_a);
 		cost_calculate(*stack_a, *stack_b);
 		choose_movs(stack_a, stack_b);
