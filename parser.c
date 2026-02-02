@@ -74,11 +74,25 @@ int	check_double(char **matrix)
 			if (ft_strcmp(matrix[i], matrix[j]) == 0)
 			{
 				ft_putendl_fd ("Error", 2);
-				return (1);
+				free_matrix(matrix);
+				exit (1);
 			}
 			j++;
 		}
 		i++;
 	}
 	return (0);
+}
+
+void	append_lst(t_push **stack_a, char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i] != NULL)
+	{
+		join(stack_a, matrix[i]);
+		i++;
+	}
+	free_matrix(matrix);
 }

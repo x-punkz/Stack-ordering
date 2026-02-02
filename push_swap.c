@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 //MOVER 3 FUNCOES
 /* APAGAR NO FINAL!!!
 void	print_stack(t_push *stack)
@@ -89,7 +88,6 @@ void	double_list(t_push *holder)
 
 int	main(int argc, char **argv)
 {
-	int		i;
 	char	*number_list;
 	char	**numbers;
 	t_push	*a;
@@ -98,11 +96,7 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc < 2)
-	{
-		//ver qual é o erro a ser mostrado
-		printf("passe os inteiros\n");
 		return (1);
-	}
 	number_list = append_str(argv);
 	if (number_list == NULL)
 		exit(1);
@@ -113,15 +107,8 @@ int	main(int argc, char **argv)
 		ft_putendl_fd ("Error", 2);
 		return (1);
 	}
-	if (check_double(numbers) != 0)
-		exit(1);
-	i = 0;
-	while (numbers[i] != NULL)
-	{
-		join(&a, numbers[i]);
-		i++;
-	}
-	free_matrix(numbers);
+	check_double(numbers);
+	append_lst(&a, numbers);
 	double_list(a);
 	if (ps_lstlen(a) > 1 && !is_sorted(a))
 		sort_stack(&a, &b);

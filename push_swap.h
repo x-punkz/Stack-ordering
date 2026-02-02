@@ -26,15 +26,16 @@ typedef struct s_push
 	int				cost_a;
 	int				cost_b;
 	int				index_final;
-
 	struct s_push	*prev;
 }					t_push;
 
-void    free_list(t_push **list);
+void	free_list(t_push **list);
 void	free_matrix(char **str);
 void	print_stack(t_push *stack);//apagar esta funçao
 int		verify(char *arg);
 int		check_double(char **matrix);
+void	join(t_push **holder, char *buf);
+void	append_lst(t_push **stack_a, char **matrix);
 void	target_index(t_push *stack_a, t_push *stack_b);
 void	index_final(t_push *stack);
 int		is_sorted(t_push *stack);
