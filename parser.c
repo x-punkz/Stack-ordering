@@ -22,13 +22,18 @@ int	verify(char *arg)
 	argx = ft_atol(arg);
 	if (argx < -2147483648 || argx > 2147483647)
 		return (1);
-	while (arg[i])
+	if (!arg || !arg[i])
+		return (1);
+	while (arg[i] != '\0')
 	{
-		if (arg[i] == '+' || arg[i] == '-' || arg[i] == ' ')
+		while (arg[i] == ' ')
 			i++;
-		if (!ft_isdigit(arg[i]))
+		if (arg[i] == '+' || arg[i] == '-')
+			i++;
+		if (arg[i] != '\0' && !ft_isdigit(arg[i]))
 			return (1);
-		i++;
+		if (arg[i] != '\0')
+			i++;
 	}
 	return (0);
 }

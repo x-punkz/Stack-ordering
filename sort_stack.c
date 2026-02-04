@@ -84,6 +84,8 @@ void	sort_stack(t_push **stack_a, t_push **stack_b)
 	}
 	else if (size == 3)
 		sort_three(stack_a);
+	//else if (size == 5)
+	//	sort_five(stack_a, stack_b);
 	else
 		turk(stack_a, stack_b);
 }

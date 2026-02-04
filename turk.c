@@ -53,6 +53,7 @@ void	final_order(t_push **stack_a)
 	int			size;
 
 	size = ps_lstlen(*stack_a);
+	update_index(*stack_a, *stack_a);
 	min_number = min_node(*stack_a);
 	while (*stack_a != min_number)
 	{

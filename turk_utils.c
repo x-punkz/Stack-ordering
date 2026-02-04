@@ -12,7 +12,7 @@
 
 #include "libft/libft.h"
 #include "push_swap.h"
-// Target ta com 26 linhas
+
 void	move_b(t_push **stack_a, t_push **stack_b, int size)
 {
 	int	i;
@@ -26,9 +26,12 @@ void	move_b(t_push **stack_a, t_push **stack_b, int size)
 			i++;
 		}
 		else
-			rot_a(stack_a, 1);
+			if((*stack_a)->index_final < size / 2)
+				rot_a(stack_a, 1);
+			else
+				rotrev_a(stack_a, 1);
 	}
-	while (ps_lstlen(*stack_a) > 3)
+	while (ps_lstlen(*stack_a) > 3 && !is_sorted(*stack_a))
 		push_b(stack_a, stack_b);
 }
 

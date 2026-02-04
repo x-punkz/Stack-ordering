@@ -72,4 +72,5 @@ t_push	*ps_lstnew(int content);
 void	ps_lstadd_front(t_push **lst, t_push *new);
 int		mod(int n);
 char	*ps_strjoin(char **s1, char const *s2);
+void	final_order(t_push **stack_a);
 #endif
