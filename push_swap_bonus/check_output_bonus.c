@@ -12,7 +12,7 @@
 
 #include "push_swap_bonus.h"
 
-int		check_output(char *mov, t_push **stack_a, t_push **stack_b)
+int	check_output(char *mov, t_push **stack_a, t_push **stack_b)
 {
 	if (ft_strcmp(mov, "sa\n") == 0)
 		swap_a(stack_a);

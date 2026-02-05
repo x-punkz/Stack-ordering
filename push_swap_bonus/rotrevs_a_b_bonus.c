@@ -13,9 +13,9 @@
 
 void	rotrev_a(t_push **a)
 {
-	t_push		*temp;
-	t_push		*last;
-	t_push		*second_last;
+	t_push	*temp;
+	t_push	*last;
+	t_push	*second_last;
 
 	if (a == NULL || *a == NULL)
 		return ;
@@ -35,9 +35,9 @@ void	rotrev_a(t_push **a)
 
 void	rotrev_b(t_push **b)
 {
-	t_push		*temp;
-	t_push		*last;
-	t_push		*second_last;
+	t_push	*temp;
+	t_push	*last;
+	t_push	*second_last;
 
 	if (b == NULL || *b == NULL)
 		return ;
@@ -53,7 +53,6 @@ void	rotrev_b(t_push **b)
 	second_last->next = NULL;
 	last->next = *b;
 	*b = last;
-
 }
 
 void	rotrev_ab(t_push **a, t_push **b)
@@ -62,7 +61,6 @@ void	rotrev_ab(t_push **a, t_push **b)
 		return ;
 	if (ps_lstlen(*b) < 2)
 		return ;
-	rotrev_a (a);
-	rotrev_b (b);
-
+	rotrev_a(a);
+	rotrev_b(b);
 }

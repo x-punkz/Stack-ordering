@@ -56,7 +56,7 @@ int	is_sorted(t_push *stack)
 
 void	check_program(t_push **stack_a, t_push **stack_b, char **matrix)
 {
-	char *mov;
+	char	*mov;
 
 	mov = get_next_line(0);
 	while (mov)
@@ -68,7 +68,7 @@ void	check_program(t_push **stack_a, t_push **stack_b, char **matrix)
 			free_list(stack_a);
 			free_list(stack_b);
 			ft_putstr_fd("Error\n", 2);
-			exit (1);
+			exit(1);
 		}
 		free(mov);
 		mov = get_next_line(0);

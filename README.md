@@ -13,7 +13,7 @@ O principal desafio do projeto não é apenas ordenar corretamente, mas fazê-lo
 Neste projeto, o algoritmo turco foi implementado usando uma estratégia baseada em blocos, onde os elementos são inseridos na pilha A e transferidos para a pilha B:
 - A lista de entrada é primeiro enviada para um vetor auxiliar.
 - Depois os valores sao enviados para a pilha A lá convertidos em inteiros.
-- Os valores são demarcados pelos seus indices finais e enviados em 2 blocos em blocos (intervalos).
+- Os valores são demarcados pelos seus indices finais e enviados em 2 blocos (intervalos).
 - A primeira metade da lista ordenada é inserida na pilha B de forma controlada.
 - A segunda metade é inserida de forma mais livre, priorizando a velocidade em detrimento da ordenação estrita.
 - Finalmente, todos os elementos são inseridos de volta da pilha B para a pilha A na ordem correta.

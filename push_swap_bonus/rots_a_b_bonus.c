@@ -28,7 +28,6 @@ void	rot_a(t_push **a)
 		first = first->next;
 	tmp->next = NULL;
 	first->next = tmp;
-
 }
 
 void	rot_b(t_push **b)
@@ -57,7 +56,6 @@ void	rot_ab(t_push **a, t_push **b)
 		return ;
 	rot_a(a);
 	rot_b(b);
-
 }
 
 void	swap_ss(t_push **a, t_push **b)

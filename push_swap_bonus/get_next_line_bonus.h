@@ -17,12 +17,12 @@
 #  define BUFFER_SIZE 1
 # endif
 
+# include "push_swap_bonus.h"
 # include <fcntl.h>
 # include <stdint.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-#include "push_swap_bonus.h"
 
 char	*get_next_line(int fd);
 
