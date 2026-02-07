@@ -34,46 +34,48 @@ Isso gerará o executável `push_swap`.
 
 Execute o programa passando os números como argumentos:
 
-        $ ./push_swap 4 67 3 87 23
+    $ ./push_swap 4 67 3 87 23
 
 O programa exibe na saída padrão a lista de operações necessárias para ordenar os números.
 
 Caso queira passar um range maior de numeros e desorganiza-los, pode usar este comando:
 
-        $ ARG=$(seq "valor_inicial" "valor_final" | shuf | tr '\n' ' ');
+    $ ARG=$(seq "valor_inicial" "valor_final" | shuf | tr '\n' ' ');
 
 Exemplo:
 
-        $ ARG=$(seq 0 499 | shuf | tr '\n' ' ');
+    $ ARG=$(seq 0 499 | shuf | tr '\n' ' ');
 
 depois:
 
-        $ ./push_swap $ARG
+    $ ./push_swap $ARG
 
 ### Exemplo
 
-        $ ./push_swap 3 2 1
+    $ ./push_swap 3 2 1
 
 Saída possível:
-        $ sa
-        $ rra
+
+    $ sa
+    $ rra
 
 Para contar o numero de movimentos, voce pode usar:
 
-        $ ./push_swap 3 2 1 | wc -l
+    $ ./push_swap 3 2 1 | wc -l
 
 Saída possivel:
-        $ 2
+
+    $ 2
 
 ### Verificador (opcional)
 
-        $ ./push_swap 3 2 1 | ./checker 3 2 1
+    $ ./push_swap 3 2 1 | ./checker 3 2 1
 
 Se tudo estiver correto, o verificador exibirá:
-        $ OK
+    $ OK
 
 Caso contrário, exibirá:
-        $ KO
+    $ KO
 
 ## Algoritmo e Escolhas Técnicas
 
